@@ -28,6 +28,7 @@ class DefinitionsScrollView extends StatelessWidget {
       if (result.meanings.length > 1) {
         for (final (meaningIndex, meaning) in result.meanings.indexed) {
           if (meaningIndex == 0) continue;
+          if (meaning.partOfSpeech.elementAtOrNull(0) == null) continue;
 
           definitions.add(
             DefinitionView(

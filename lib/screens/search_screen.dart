@@ -93,6 +93,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
                 controller: _titleController,
               ),
+              SizedBox(height: 16.0),
               OutlinedButton(
                 onPressed: () {
                   _onSearchPressed(context);
