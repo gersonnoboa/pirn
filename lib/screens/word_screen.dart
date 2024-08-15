@@ -12,36 +12,46 @@ class WordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
+    if (wordResult.searchResult.isEmpty) {
+      return Scaffold(
         appBar: AppBar(
-          bottom: const TabBar(
-            tabs: [
-              Tab(
-                text: "DEFINITION",
-              ),
-              Tab(text: "CASES"),
-              Tab(text: "SYNONYMS"),
-            ],
-            labelColor: Colors.white,
-            unselectedLabelColor: Colors.white,
-          ),
           title: Text(wordResult.estonianWord),
           backgroundColor: theme.colorScheme.primary,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
         ),
-        body: TabBarView(
-          children: [
-            DefinitionsScrollView(wordResult: wordResult),
-            CasesScrollView(
-              wordResult: wordResult,
+        body: const Center(child: Text("That word doesn't exist")),
+      );
+    } else {
+      return DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: const TabBar(
+              tabs: [
+                Tab(
+                  text: "DEFINITION",
+                ),
+                Tab(text: "CASES"),
+                Tab(text: "SYNONYMS"),
+              ],
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.white,
             ),
-            SynonymsScrollView(),
-          ],
+            title: Text(wordResult.estonianWord),
+            backgroundColor: theme.colorScheme.primary,
+            foregroundColor: Theme.of(context).colorScheme.onPrimary,
+          ),
+          body: TabBarView(
+            children: [
+              DefinitionsScrollView(wordResult: wordResult),
+              CasesScrollView(
+                wordResult: wordResult,
+              ),
+              SynonymsScrollView(),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 }
