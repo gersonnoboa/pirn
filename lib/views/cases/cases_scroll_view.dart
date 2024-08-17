@@ -20,7 +20,7 @@ class CasesScrollView extends StatelessWidget {
   }
 
   List<Widget> get cases {
-    List<Widget> definitions = [];
+    List<Widget> cases = [];
 
     final searchResult = wordResult.searchResult.first;
 
@@ -33,9 +33,10 @@ class CasesScrollView extends StatelessWidget {
         plural: numberedCase.plural.value,
       );
 
-      definitions.add(caseView);
+      cases.add(caseView);
+      cases.add(const Divider());
     }
-    return definitions;
+    return cases;
   }
 
   List<Widget> get verbs {
@@ -44,6 +45,7 @@ class CasesScrollView extends StatelessWidget {
     for (final form in wordResult.searchResult.first.wordForms) {
       final view = WordFormView(type: form.morphValue, value: form.value);
       verbs.add(view);
+      verbs.add(const Divider());
     }
 
     return verbs;
@@ -55,6 +57,7 @@ class CasesScrollView extends StatelessWidget {
     for (final form in wordResult.searchResult.first.wordForms) {
       final view = WordFormView(type: form.morphValue, value: form.value);
       inmutables.add(view);
+      inmutables.add(const Divider());
     }
 
     return inmutables;

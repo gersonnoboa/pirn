@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pirn/models/word_result.dart';
 import 'package:pirn/views/cases/cases_scroll_view.dart';
 import 'package:pirn/views/definitions/definitions_scroll_view.dart';
-import 'package:pirn/views/synonyms_scroll_view.dart';
+import 'package:pirn/views/translations/translations_scroll_view.dart';
 
 class WordScreen extends StatelessWidget {
   final WordResult wordResult;
@@ -28,11 +28,9 @@ class WordScreen extends StatelessWidget {
           appBar: AppBar(
             bottom: const TabBar(
               tabs: [
-                Tab(
-                  text: "DEFINITION",
-                ),
+                Tab(text: "DEFINITIONS"),
                 Tab(text: "CASES"),
-                Tab(text: "SYNONYMS"),
+                Tab(text: "TRANSLATIONS"),
               ],
               labelColor: Colors.white,
               unselectedLabelColor: Colors.white,
@@ -44,10 +42,8 @@ class WordScreen extends StatelessWidget {
           body: TabBarView(
             children: [
               DefinitionsScrollView(wordResult: wordResult),
-              CasesScrollView(
-                wordResult: wordResult,
-              ),
-              SynonymsScrollView(),
+              CasesScrollView(wordResult: wordResult),
+              TranslationsScrollView(wordResult: wordResult),
             ],
           ),
         ),
